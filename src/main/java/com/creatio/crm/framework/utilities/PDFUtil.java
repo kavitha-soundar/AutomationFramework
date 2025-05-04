@@ -21,7 +21,6 @@ public class PDFUtil
 			PDDocument doc = PDDocument.load(file);
 			PDFTextStripper textStrip = new PDFTextStripper();
 			pdfFileData = textStrip.getText(doc);
-
 		} 
 		catch (FileNotFoundException e)
 		{
