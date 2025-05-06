@@ -14,7 +14,7 @@ public class PDFUtil
 	public static String ReadPDFFile(String filename)
 	{
 		String pdfFileData = null;
-		String fileNameValue = ApplicationConstants.FilesLocation + filename;
+		String fileNameValue = ApplicationConstants.FILES_LOCATION + filename;
 		try
 		{
 			FileInputStream file = new FileInputStream(fileNameValue);

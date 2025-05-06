@@ -389,21 +389,7 @@ public class WebCommons
 		return alert.getText();
 	}
 
-	public void takeScreenshot(String methodName)
-	{
-		try
-		{
-			DateFormat dateFormat = new SimpleDateFormat("dd_mm_yyyy:hh_mm_ss");
-			Date date = new Date();
-			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			File destFile = new File(System.getProperty("user.dir") + "//Screenshots//" + methodName + "-"
-					+ dateFormat.format(date) + ".png");
-			FileUtils.copyFile(scrFile, destFile);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
+	
 
 	public void fileUpload(WebElement element, String filename)
 	{

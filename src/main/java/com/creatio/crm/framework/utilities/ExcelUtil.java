@@ -21,7 +21,7 @@ public class ExcelUtil
 		List<Map<String, String>> excelData = new ArrayList<Map<String, String>>();
 		try
 		{
-			FileInputStream file = new FileInputStream(ApplicationConstants.ExcelFileLocation + fileName);
+			FileInputStream file = new FileInputStream(ApplicationConstants.EXCEL_FILE_LOCATION + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			int totalRows = sheet.getPhysicalNumberOfRows();
@@ -63,7 +63,7 @@ public class ExcelUtil
 		List<Map<String, String>> excelData = new ArrayList<Map<String, String>>();
 		try
 		{
-			FileInputStream file = new FileInputStream(ApplicationConstants.ExcelFileLocation + fileName);
+			FileInputStream file = new FileInputStream(ApplicationConstants.EXCEL_FILE_LOCATION + fileName);
 			XSSFWorkbook workbook = new XSSFWorkbook(file);
 			
 			int TotalSheet = workbook.getNumberOfSheets();
@@ -113,7 +113,7 @@ public class ExcelUtil
 	{
 		try
 		{
-		FileInputStream file = new FileInputStream(ApplicationConstants.ExcelFileLocation + fileName);
+		FileInputStream file = new FileInputStream(ApplicationConstants.EXCEL_FILE_LOCATION + fileName);
 		XSSFWorkbook workbook = new XSSFWorkbook(file);
 		XSSFSheet sheet = workbook.getSheet(sheetName);
 		}

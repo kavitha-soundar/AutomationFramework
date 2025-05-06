@@ -14,7 +14,7 @@ public class PropertyUtil
 		Properties prop = new Properties();
 		try
 		{
-			FileInputStream file = new FileInputStream(ApplicationConstants.PropertyFileLocation + filename);
+			FileInputStream file = new FileInputStream(ApplicationConstants.PROPERTY_FILE_LOCATION + filename);
 			prop.load(file);
 		} catch (FileNotFoundException e)
 		{
