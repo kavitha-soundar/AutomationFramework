@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,12 +15,11 @@ import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.creatio.crm.framework.web.constants.ApplicationConstants;
+import com.creatio.crm.framework.web.constants.FrameworkConstants;
 
 public class ExtentReporter
 {
-	public static ExtentHtmlReporter html = null;
+	public static ExtentSparkReporter html = null;
 	public static ExtentReports extent = null;
 	public static ExtentTest logger = null;
 
@@ -28,13 +28,13 @@ public class ExtentReporter
 	{
 		DateFormat dateFormat = new SimpleDateFormat("dd_mm_yyyy:hh_mm_ss");
 		Date date = new Date();
-		String ExtentReportName = ApplicationConstants.REPORTS_LOCATION + dateFormat.format(date)
-				+ ApplicationConstants.REPORT_NAME;
-		html = new ExtentHtmlReporter(ExtentReportName);
+		String ExtentReportName = FrameworkConstants.getReportsLocation() + dateFormat.format(date)
+				+ FrameworkConstants.getReportName();
+		html = new ExtentSparkReporter(ExtentReportName);
 		extent = new ExtentReports();
 		extent.attachReporter(html);
 		extent.setSystemInfo("Enironment", "PROD");
-		extent.setSystemInfo("Host Name", ApplicationConstants.USER_NAME);
+		extent.setSystemInfo("Host Name", FrameworkConstants.getUserName());
 	}
 
 	public static void startReporting(String testName)

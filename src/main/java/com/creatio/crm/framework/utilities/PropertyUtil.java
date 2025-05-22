@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.creatio.crm.framework.web.constants.ApplicationConstants;
+import com.creatio.crm.framework.web.constants.FrameworkConstants;
 
 public class PropertyUtil
 {
@@ -14,7 +14,7 @@ public class PropertyUtil
 		Properties prop = new Properties();
 		try
 		{
-			FileInputStream file = new FileInputStream(ApplicationConstants.PROPERTY_FILE_LOCATION + filename);
+			FileInputStream file = new FileInputStream(FrameworkConstants.getPropertyLocation() + filename);
 			prop.load(file);
 		} catch (FileNotFoundException e)
 		{
