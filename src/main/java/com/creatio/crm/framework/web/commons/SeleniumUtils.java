@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 import static com.creatio.crm.framework.driver.DriverManager.getDriver;
@@ -20,6 +21,10 @@ public class SeleniumUtils {
     private Actions action = new Actions(getDriver());
 
     private SeleniumUtils() {
+    }
+
+    private static WebElement findElementBy(By by) {
+        return getDriver().findElement(by);
     }
 
     public static void waitForElementPresence(By by) {
@@ -52,17 +57,17 @@ public class SeleniumUtils {
 
     public static void waitAndClick(By by) {
         waitForElementToBeClickable(by);
-        getDriver().findElement(by).click();
+        findElementBy(by).click();
     }
 
     public void clickElementByJSScript(By by) {
-        js.executeScript("arguments[0].scrollIntoView()", getDriver().findElement(by));
-        js.executeScript("arguments[0].click()", getDriver().findElement(by));
+        js.executeScript("arguments[0].scrollIntoView()", findElementBy(by));
+        js.executeScript("arguments[0].click()", findElementBy(by));
     }
 
     public static void waitAndSendKeys(By by, String text) {
         waitForElementToBeClickable(by);
-        getDriver().findElement(by).sendKeys(text);
+        findElementBy(by).sendKeys(text);
     }
 
     public void getHistoryByJSScript(WebElement element) {
@@ -78,7 +83,7 @@ public class SeleniumUtils {
     }
 
     public String getTitleByJSScript() {
-        return js.executeScript("return document.title;").toString();
+        return Objects.requireNonNull(js.executeScript("return document.title;")).toString();
     }
 
     public void refreshWebPage() {
@@ -144,43 +149,46 @@ public class SeleniumUtils {
     }
     // ADFC153394 manasa d employee id
 
-    public void clickByActionMovement(WebElement element) {
+    public void clickByActionMovement(By by) {
+        WebElement element = findElementBy(by);
         action.scrollToElement(element).build().perform();
         action.moveToElement(element).click().perform();
     }
 
-    public void clickByAction(WebElement element) {
+    public void clickByAction(By by) {
+        WebElement element = findElementBy(by);
         action.scrollToElement(element).build().perform();
         action.click(element).perform();
     }
 
-    public void doubleClick(WebElement element) {
+    public void doubleClick(By by) {
+        WebElement element = findElementBy(by);
         action.scrollToElement(element).build().perform();
         action.doubleClick(element).build().perform();
     }
 
-    public void typeTextByAction(WebElement element, String data) {
-        action.sendKeys(element, data).build().perform();
+    public void typeTextByAction(By by, String data) {
+        action.sendKeys(findElementBy(by), data).build().perform();
     }
 
-    public void dragAndDropElementByHold(WebElement source, WebElement destination) {
-        action.moveToElement(source).clickAndHold().moveToElement(destination).release().perform();
+    public void dragAndDropElementByHold(By source, By destination) {
+        action.moveToElement(findElementBy(source)).clickAndHold().moveToElement(findElementBy(destination)).release().perform();
     }
 
-    public void dragAndDropElement(WebElement source, WebElement destination) {
-        action.dragAndDrop(source, destination).perform();
+    public void dragAndDropElement(By source, By destination) {
+        action.dragAndDrop(findElementBy(source), findElementBy(destination)).perform();
     }
 
     public void rightClick() {
-        action.contextClick();
+        action.contextClick().build().perform();
     }
 
-    public void rightClickTheElement(WebElement element) {
-        action.contextClick(element);
+    public void rightClickTheElement(By by) {
+        action.contextClick(findElementBy(by)).build().perform();
     }
 
-    public void selectBy(WebElement element, String selection, String data) {
-        Select option = new Select(element);
+    public void selectBy(By by, String selection, String data) {
+        Select option = new Select(findElementBy(by));
         if (selection.equalsIgnoreCase("text")) {
             option.selectByVisibleText(data);
         } else if (selection.contains("text")) {
@@ -192,8 +200,8 @@ public class SeleniumUtils {
         }
     }
 
-    public void deselectBy(WebElement element, String selection, String data) {
-        Select option = new Select(element);
+    public void deselectBy(By by, String selection, String data) {
+        Select option = new Select(findElementBy(by));
         if (selection.equalsIgnoreCase("text")) {
             option.deselectByVisibleText(data);
         } else if (selection.equalsIgnoreCase("value")) {
@@ -205,53 +213,52 @@ public class SeleniumUtils {
         }
     }
 
-    public void deselectAll(WebElement element) {
-        Select option = new Select(element);
+    public void deselectAll(By by) {
+        Select option = new Select(findElementBy(by));
         option.deselectAll();
     }
 
-    public List<WebElement> getAllSelectedOptions(WebElement element) {
-        Select option = new Select(element);
-        List<WebElement> selectedOption = option.getAllSelectedOptions();
-        return selectedOption;
+    public List<WebElement> getAllSelectedOptions(By by) {
+        Select option = new Select(findElementBy(by));
+        return option.getAllSelectedOptions();
     }
 
-    public boolean isDisplayed(WebElement element) {
-        return element.isDisplayed();
+    public boolean isDisplayed(By by) {
+        return findElementBy(by).isDisplayed();
     }
 
-    public boolean isEnabled(WebElement element) {
-        return element.isEnabled();
+    public boolean isEnabled(By by) {
+        return findElementBy(by).isEnabled();
     }
 
-    public boolean isSelected(WebElement element) {
-        return element.isSelected();
+    public boolean isSelected(By by) {
+        return findElementBy(by).isSelected();
     }
 
-    public void submit(WebElement element) {
-        element.submit();
+    public void submit(By by) {
+        findElementBy(by).submit();
     }
 
-    public String getAttributeValue(WebElement element, String attribute) {
-        return element.getDomAttribute(attribute);
+    public String getAttributeValue(By by, String attribute) {
+        return findElementBy(by).getDomAttribute(attribute);
     }
 
-    public String getText(WebElement element) {
-        return element.getText();
+    public String getText(By by) {
+        return findElementBy(by).getText();
     }
 
-    public boolean isMultiDropDown(WebElement element) {
-        Select option = new Select(element);
+    public boolean isMultiDropDown(By by) {
+        Select option = new Select(findElementBy(by));
         return option.isMultiple();
     }
 
-    public String getSelectedOptionText(WebElement element) {
-        Select option = new Select(element);
+    public String getSelectedOptionText(By by) {
+        Select option = new Select(findElementBy(by));
         return option.getFirstSelectedOption().getText();
     }
 
-    public void getAllAvailableOptionsText(WebElement element) {
-        Select option = new Select(element);
+    public void getAllAvailableOptionsText(By by) {
+        Select option = new Select(findElementBy(by));
         List<WebElement> availableOptions = option.getOptions();
 
         for (WebElement ele : availableOptions) {
@@ -263,11 +270,11 @@ public class SeleniumUtils {
         return getDriver().getCurrentUrl();
     }
 
-    public void pressArrowUpAction(WebElement element) {
+    public void pressArrowUpAction() {
         action.sendKeys(Keys.ARROW_UP).build().perform();
     }
 
-    public void pressArrowDownAction(WebElement element) {
+    public void pressArrowDownAction() {
         action.sendKeys(Keys.ARROW_DOWN).build().perform();
     }
 
@@ -340,6 +347,4 @@ public class SeleniumUtils {
         Alert alert = getDriver().switchTo().alert();
         return alert.getText();
     }
-
-
 }

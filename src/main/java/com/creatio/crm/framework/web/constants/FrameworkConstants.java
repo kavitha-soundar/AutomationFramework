@@ -18,27 +18,28 @@ public final class FrameworkConstants {
     public static String getExcelFileLocation() {
         return EXCEL_FILE_LOCATION;
     }
-	public static String getScreenshotLocation(){
-		return SCREENSHOT_LOCATION;
-	}
 
-	public static String getFilesLocation() {
-		return FILES_LOCATION;
-	}
+    public static String getScreenshotLocation() {
+        return SCREENSHOT_LOCATION;
+    }
 
-	public static String getReportsLocation() {
-		return REPORTS_LOCATION;
-	}
+    public static String getFilesLocation() {
+        return FILES_LOCATION;
+    }
 
-	public static String getReportName() {
-		return REPORT_NAME;
-	}
+    public static String getReportsLocation() {
+        return REPORTS_LOCATION;
+    }
 
-	public static int getWaitTime() {
-		return WAIT_TIME;
-	}
+    public static String getReportName() {
+        return REPORT_NAME;
+    }
 
-	public static String getUserName() {
-		return USER_NAME;
-	}
+    public static int getWaitTime() {
+        return WAIT_TIME;
+    }
+
+    public static String getUserName() {
+        return USER_NAME;
+    }
 }
