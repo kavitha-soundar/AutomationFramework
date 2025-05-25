@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com</groupId>
-    <artifactId>creatio</artifactId>
+    <artifactId>orangeHrm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -17,11 +17,13 @@
         <apachepoiooxml.version>5.4.0</apachepoiooxml.version>
         <postgresql.version>42.7.5</postgresql.version>
         <seleniumjava.version>4.31.0</seleniumjava.version>
-        <testng.version>7.11.0</testng.version>
+       <!-- <testng.version>7.11.0</testng.version> -->
         <extentreports.version>5.1.2</extentreports.version>
         <gson.version>2.13.1</gson.version>
         <junit.version>3.8.1</junit.version>
         <restassured.version>5.5.2</restassured.version>
+        <cucumbertestng.version>7.22.2</cucumbertestng.version>
+        <cucumberjava.version>7.22.2</cucumberjava.version>
     </properties>
     <dependencies>
         <!-- pdfbox to read the data from pdf file-->
@@ -57,13 +59,25 @@
             <artifactId>selenium-java</artifactId>
             <version>${seleniumjava.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumberjava.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumbertestng.version}</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
-        <dependency>
+      <!--  <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-        </dependency>
+        </dependency> -->
 
         <dependency>
             <groupId>junit</groupId>
